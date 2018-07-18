@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
     ##your code here
     user = User.find_by(:username => params[:username]) #look for user with this username
 		if user && user.authenticate(params[:password]) #authenticate is a bcrypt method 
-        session[:user_id] = user.id
+        session[:user_id] = user.id  #compares string against password digest 
         redirect "/account"
     else
         redirect "/failure"
