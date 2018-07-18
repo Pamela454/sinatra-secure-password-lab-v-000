@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
 
         if params[:username] == "" || params[:password] == ""
             redirect "/failure"
-    		else user.save #only true if has a password and can save 
+    		else user.save #only true if has a password and can save
             redirect "/login"
         end
   end
@@ -40,7 +40,7 @@ class ApplicationController < Sinatra::Base
   post "/login" do
     ##your code here
     user = User.find_by(:username => params[:username]) #look for user with this username
-		if user && user.authenticate(params[:password])
+		if user && user.authenticate(params[:password]) #authenticate is a bcrypt method 
         session[:user_id] = user.id
         redirect "/account"
     else
